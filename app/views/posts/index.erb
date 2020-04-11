@@ -1,9 +1,8 @@
-<ul>
+<ol>
 <% @posts.each do |post| %>
   <li>
-    <a href="/posts/<%= post.id %>">
-      <%= post.title %> 
+    <a href="/posts/<%= post.title %>">
     </a>
   </li>
 <% end %>
-</ul>
+</ol>
