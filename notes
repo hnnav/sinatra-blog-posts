@@ -1,0 +1,66 @@
+Project Requirements
+
+1. Build an MVC Sinatra application.
+2. Use ActiveRecord with Sinatra.
+3. Use multiple models.
+4. Use at least one has_many relationship on a User model 
+and one belongs_to relationship on another model.
+5. Must have user accounts - users must be able to sign up, sign in, and sign out.
+6. Validate uniqueness of user login attribute (username or email).
+7. Once logged in, a user must have the ability to 
+create, read, update and destroy the resource that belongs_to user.
+8. Ensure that users can edit and delete only their own resources 
+- not resources created by other users.
+9. Validate user input so bad data cannot be persisted to the database.
+10. BONUS: Display validation failures to user with error messages. (
+    This is an optional feature, challenge yourself and give it a shot!)
+
+IDEA FOR PROJECT:
+
+    Postger where user can write and save Posts/articles
+    - user has_many Posts - Posts belong to user
+
+Interface:
+- User can sign up
+- User can sign in 
+- User can view their account
+- User can sing out
+- User can create, read, update, destroy their Posts
+
+User model
+- Attributes: username, password
+- Has many Posts
+
+UserController
+- Render signup form
+- Create user instances
+
+User views
+- signup.erb - form for signing up
+- show.erb - view account
+
+Post model 
+- Attributes: Title, content
+- belongs_to user
+
+PostController
+    CREATE
+        - Create a new Post form
+        - Save new Post instances
+        - User can view their Posts
+    READ 
+        - See all Posts
+        - See one Post
+    UPDATE 
+        - Update form
+        - Save the updates
+    DELETE
+        - User can delete instances of their Posts
+
+Post views
+- new.erb - form for creating a new Post
+- show.erb - dynamic route view one Post
+- index.erb - view all Posts
+- edit.erb - dynamic route to update an Post
+
+    
