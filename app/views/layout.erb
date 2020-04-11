@@ -1,11 +1,11 @@
 <!doctype html>
 <html>
   <head>
-    <title>Sinatra Blogger</title>
+    <title> Sinatra Blogger </title>
   </head>
   <body>
 
-    <div class="navbar">
+    <nav>
         <a href="/">Home</a>&nbsp;
         
         <a href="/users/#{@current_user.id}"> Account </a>&nbsp;
@@ -15,14 +15,11 @@
         <% if logged_in?%>
           <a href="/logout"> Logout </a>
         <% end %>
-
-    </div>
+    </nav>
     
     <div class="container">
       <h1>Sinatra Blogger</h1>
       <%= yield %>
-
-
     </div>
   </body>
 </html>
