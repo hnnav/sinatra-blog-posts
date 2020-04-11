@@ -1,0 +1,11 @@
+Welcome, <%= @user.username %><br>
+
+<br>
+Posts(<%= @user.posts.count %>)<br>
+<br>
+<% @user.posts.each do |post| %>
+    <a href="/posts/<%= post.id %>"> <%= post.title %></a>
+    <br>
+<% end %>
+
+<a href="/posts/new"> Add a new post </a>
