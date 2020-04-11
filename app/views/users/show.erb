@@ -1,10 +1,13 @@
-<h1> Welcome, <%= @user.username.capitalize %></h1><br>
+<h1> Welcome, <%= @user.username.capitalize %></h1>
 
-<h2> Posts(<%= @user.posts.count %>)</h2><br>
+<h2> Posts(<%= @user.posts.count %>)</h2>
 
 <% @user.posts.each do |post| %>
-    <a href="/posts/<%= post.id %>"> <%= post.title %></a>
-    <br>
+    <ol>
+        <li>
+            <a href="/posts/<%= post.id %>"> <%= post.title %></a>
+        </li>
+    </ol>
 <% end %>
 
 <a href="/posts/new"> Add a new post </a>

@@ -8,11 +8,10 @@
     <nav>
         <a href="/">Home</a>&nbsp;
         
-        <a href="/users/#{@current_user.id}"> Account </a>&nbsp;
-
         <a href="/posts/new"> Create a post </a>&nbsp;
 
-        <% if logged_in?%>
+        <% if logged_in? %>
+          <a href='/users/<%= current_user.id %>'> Account </a>&nbsp;
           <a href="/logout"> Logout </a>
         <% end %>
     </nav>

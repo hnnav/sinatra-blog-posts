@@ -12,10 +12,14 @@ class PostController < ApplicationController
         
         unless Post.valid_params?(params)
             redirect to "/posts/new"
+        else
+            @post = Post.create(
+            title: params[:title], 
+            content: params[:content],
+            user_id: @current_user.id
+            )
+            redirect "/posts/#{@post.id}"
         end
-
-        @post = Post.create(params)
-        redirect "/posts/#{@post.id}"
     end
 
      # READ - all posts

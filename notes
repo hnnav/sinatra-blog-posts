@@ -63,4 +63,5 @@ Post views
 - index.erb - view all Posts
 - edit.erb - dynamic route to update an Post
 
-    
+TODO:
+- implement flash alerts

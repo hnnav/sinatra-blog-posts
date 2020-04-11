@@ -24,14 +24,9 @@ class UserController < ApplicationController
     end 
 
     # show user account page (users/show)
-    get 'users/:id' do
-        if logged_in?
-            @user = User.find_by(params[:id])
-            erb :'users/show'
-        else
-            # flash[:alert] = "Please log in!"
-            erb :'/'
-        end
+    get '/users/:id' do
+        @user = User.find(params[:id]) 
+        erb :'users/show'
     end
 
     # render signup form
@@ -67,8 +62,6 @@ class UserController < ApplicationController
     get '/logout' do
         if session[:user_id] != nil
           session.destroy
-          redirect to '/login'
-        else
           redirect to '/'
         end
     end
