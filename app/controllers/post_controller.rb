@@ -9,7 +9,11 @@ class PostController < ApplicationController
     # CREATE - create instance
     post "/posts" do
         redirect_if_not_logged_in
-        # check for empty params?
+        
+        unless Post.valid_params?(params)
+            redirect to "/posts/new"
+        end
+
         @post = Post.create(params)
         redirect "/posts/#{@post.id}"
     end
@@ -38,6 +42,11 @@ class PostController < ApplicationController
     # UPDATE - save instance
     patch "/posts/:id" do
         redirect_if_not_logged_in
+
+        unless Post.valid_params?(params)
+            redirect to "/posts/edit"
+        end
+
         @post = Post.find(params[:id])
         @post.update(params.select{|k|k=="title" || k=="content"})
         redirect "/posts/#{@post.id}"
