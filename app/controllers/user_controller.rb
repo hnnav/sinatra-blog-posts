@@ -25,37 +25,39 @@ class UserController < ApplicationController
 
     # show user account page (users/show)
     get '/users/:id' do
-        @user = User.find(params[:id]) 
-        erb :'users/show'
+        if logged_in?
+            @user = User.find(params[:id]) 
+            erb :'users/show'
+        else
+            redirect "/users/signup"
+        end
     end
 
     # render signup form
-    get '/users/signup' do 
-        if logged_in? 
-           redirect "/users/#{current_user.id}"
+    get '/signup' do
+        if !session[:user_id]
+          erb :'users/signup'
         else
-           erb :'/users/signup'        
-        end 
-    end 
+          redirect to "/users/#{current_user.id}"
+        end
+    end
 
     # create user instance, set session
-    post '/users/signup' do
-        if params[:username] == "" || params[:password] == ""
-            # flash[:alert] = "Please enter username and password"
-            redirect to "/users/signup"
-        else 
-            if params[:password] == params[:password_confirmation]
-               @user = User.create(
-                username: params[:username], 
-                password: params[:password]
-               )
-               session[:user_id] = @user.id 
-               redirect "/users/#{@user.id}" #users/show
-            else 
-               # flash[:alert] = "Passwords don't match - Please try again"
-               redirect "/users/signup"
-            end 
-        end 
+    post '/signup' do
+        if User.find_by(username: params[:username])
+            flash[:alert] = "Username is already taken"
+            redirect '/signup'
+        elsif params[:username] == "" || params[:password] == ""
+            flash[:alert] = "Please choose username and password"
+            redirect '/signup'
+        elsif params[:password] == params[:password_confirmation]
+            user = User.create(username: params[:username], password: params[:password])
+            session[:user_id] = user.id
+            redirect to "/users/#{user.id}"
+        else
+            flash[:alert] = "Passwords don't match!"
+            redirect '/signup'
+        end
     end
 
     # logout method
