@@ -3,11 +3,7 @@
 <h2> Posts(<%= @user.posts.count %>)</h2>
 
 <% @user.posts.each do |post| %>
-    <ol>
-        <li>
-            <a href="/posts/<%= post.id %>"> <%= post.title %></a>
-        </li>
-    </ol>
-<% end %>
+    <a href="/posts/<%= post.id %>"> <%= post.title %></a><br>
+<% end %><br>
 
 <a href="/posts/new"> Add a new post </a>

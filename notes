@@ -17,52 +17,53 @@ create, read, update and destroy the resource that belongs_to user.
 
 IDEA FOR PROJECT:
 
-    Postger where user can write and save Posts/articles
-    - user has_many Posts - Posts belong to user
+    User can write and save posts
+    - user has_many posts - posts belong to user
 
 Interface:
 - User can sign up
 - User can sign in 
 - User can view their account
 - User can sing out
-- User can create, read, update, destroy their Posts
+- User can create, read, update, destroy their posts
 
 User model
 - Attributes: username, password
-- Has many Posts
+- Has many posts
+- Has a secure password (using bcrypt gem)
 
 UserController
 - Render signup form
 - Create user instances
+- Render login form
+- Set sessions
+- Logout method
 
 User views
 - signup.erb - form for signing up
 - show.erb - view account
+- login.erb - form for logging in
 
 Post model 
-- Attributes: Title, content
+- Attributes: title, content
 - belongs_to user
 
 PostController
     CREATE
-        - Create a new Post form
-        - Save new Post instances
-        - User can view their Posts
+        - Create a new post form
+        - Save new post instances
+        - User can view their posts
     READ 
-        - See all Posts
-        - See one Post
+        - See all posts
+        - See one post
     UPDATE 
         - Update form
         - Save the updates
     DELETE
-        - User can delete instances of their Posts
+        - User can delete instances of their posts
 
 Post views
-- new.erb - form for creating a new Post
-- show.erb - dynamic route view one Post
-- index.erb - view all Posts
-- edit.erb - dynamic route to update an Post
-
-TODO:
-- implement flash alerts
-- work on formatting & style
+- new.erb - form for creating a new post
+- show.erb - dynamic route view one post
+- index.erb - view all posts
+- edit.erb - dynamic route to update an post
