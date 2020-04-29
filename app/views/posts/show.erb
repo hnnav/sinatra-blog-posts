@@ -1,9 +1,11 @@
 <h2><%= @post.title %><br></h2>
 <p><%= @post.content %><br></p>
 
+<% if current_user.id == @post.user_id %>
 <form method="post" action="/posts/<%= @post.id %>">
   <input type="hidden" name="_method" value="delete" />
   <input type="submit" value="delete" />
 </form><br>
 
 <a href="/posts/<%= @post.id %>/edit">Edit</a>
+<% end %>

@@ -52,8 +52,11 @@ class PostController < ApplicationController
         end
 
         @post = Post.find(params[:id])
-        @post.update(params.select{|k|k=="title" || k=="content"})
-        redirect "/posts/#{@post.id}"
+        if @post.user_id == current_user.id
+            @post.update(params.select{|k|k=="title" || k=="content"})
+            redirect "/posts/#{@post.id}"
+        else redirect "/"
+        end
     end
 
     # DELETE 
